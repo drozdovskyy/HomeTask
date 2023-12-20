@@ -52,16 +52,20 @@ public class SignInWaitTest {
     }
 
     public static void closePopUp() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT_1_SECOND));
+        presentationSleep(2); // For Presentation ONLY
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT_1_SECOND)); // 0 by default
         List<WebElement> loginFormCloseButton = driver.findElements(By.cssSelector("img[alt='close button']"));
         System.out.println("loginFormCloseButton.size() = " + loginFormCloseButton.size());
-        if (loginFormCloseButton.size() > 0) {
+        if (!loginFormCloseButton.isEmpty()) {
             WebElement closeButton = loginFormCloseButton.get(0);
-            loginFormCloseButton.get(0).click();
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WEBDRIVER_WAIT_10_SECONDS));
+            closeButton.click();
+
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(IMPLICITLY_WAIT_10_SECONDS));
             wait.until(ExpectedConditions.stalenessOf(closeButton));
+            //presentationSleep();
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT_10_SECONDS));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT_10_SECONDS)); // 0 by default
+        presentationSleep(); // For Presentation ONLY
 
 
     }
@@ -120,7 +124,8 @@ public class SignInWaitTest {
         driver.manage().deleteAllCookies();
         js.executeScript("window.localStorage.removeItem('accessToken')");
         js.executeScript("window.localStorage.removeItem('refreshToken')");
-        js.executeScript("window.localStorage.clear();");
+        driver.navigate().refresh();
+        //js.executeScript("window.localStorage.clear();");
 
         System.out.println("\t@AfterEach executed");
     }
