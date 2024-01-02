@@ -1,5 +1,9 @@
 package com.softserve.framework.data;
 
+import com.softserve.framework.tools.CSVReader;
+
+import java.util.List;
+
 public final class InvalidUserRepository {
     private InvalidUserRepository() {
     }
@@ -10,7 +14,9 @@ public final class InvalidUserRepository {
 
     public static InvalidUser getInvalidUserNotConfirmed() {
         return new InvalidUser("samplestest@greencity.com",
-                "weyt3$Guew^", "You should verify the email first, check your email box!", "general");
+                "weyt3$Guew^",
+                "You should verify the email first, check your email box!",
+                "general");
     }
 
     public static InvalidUser getInvalidEmailNoAtSignSymbol() {
@@ -20,7 +26,7 @@ public final class InvalidUserRepository {
 
     public static InvalidUser getInvalidEmailNoDot() {
         return new InvalidUser(
-                "wdd35497@nezidcom", " weyt3$Guew^", "Please check if the email is written correctly", "email");
+                "wdd35497@nezidcom", "weyt3$Guew^", "Please check if the email is written correctly", "email");
     }
 
    public static InvalidUser getInvalidEmailCommaInsteadOfDot() {
@@ -72,9 +78,18 @@ public final class InvalidUserRepository {
     }
 
     public static InvalidUser getInvalidMailWrong() {
-        return new InvalidUser("wdd35497@nezi.com",
+        return new InvalidUser(
+                "wdd35497@nezi.com",
                 "weyt3$Guew^",
                 "Bad email or password",
                 "general");
+    }
+
+    public static List<InvalidUser> fromCsv(String filename) {
+        return InvalidUser.getByLists(new CSVReader(filename).getAllCells());
+    }
+
+    public static List<InvalidUser> fromCsv() {
+        return fromCsv("invalid_users.csv");
     }
 }

@@ -1,0 +1,12 @@
+email,password,username
+samplestest@greencity.com,weyt3$Guew^,"You should verify the email first, check your email box!",general
+wdd35497nezid.com,weyt3$Guew^,Please check if the email is written correctly,email
+wdd35497@nezidcom,weyt3$Guew^,"Please check if the email is written correctly",email
+"wdd35497@nezid,com",weyt3$Guew^,"Please check if the email is written correctly",email
+wdd35497 @nezid.com,weyt3$Guew^,"Please check if the email is written correctly",email
+"",weyt3$Guew,"Email is required",email
+wdd35497@nezid.com,w3$G,"Password must be at least 8 characters long without spaces",password
+wdd35497@nezid.com,"","Password is required",password
+wdd35497@nezid.com,1234567890a234567890b,"Password must be less than 20 characters long without spaces.",password
+wdd35497@nezid.com,weyt3$Guew,"Bad email or password",general
+wdd35497@nezi.com,weyt3$Guew^,"Bad email or password",general

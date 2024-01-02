@@ -1,5 +1,9 @@
 package com.softserve.framework.data;
 
+import com.softserve.framework.tools.CSVReader;
+
+import java.util.List;
+
 public final class UserRepository {
     private UserRepository() {
     }
@@ -11,6 +15,14 @@ public final class UserRepository {
     }
     public static User getValidUserFgp14159() {
         return new User("fgp14159@zbock.com", "T9jqcxx#", "Fgp14159");
+    }
+
+    public static List<User> fromCsv(String filename) {
+        return User.getByLists(new CSVReader(filename).getAllCells());
+    }
+
+    public static List<User> fromCsv() {
+        return fromCsv("users.csv");
     }
 
 }
